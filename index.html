@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ═══ SEO CORE ═══ -->
-  <title>Do I Have Depression? Free PHQ-9 Screening Tool</title>
-  <meta name="description" content="Answer 9 honest questions, get a clinically validated depression score with clear guidance and real support links. Takes 2 minutes. Nothing is stored." />
+  <!-- SEO CORE -->
+  <title>Do I Have Depression? Free PHQ-9 Test (2 min)</title>
+  <meta name="description" content="9 questions, clinically validated, no login. Get your PHQ-9 score and actual guidance on what to do next. Nothing stored, nothing shared." />
   <meta name="keywords" content="do i have depression, depression test, PHQ-9, depression screening, am i depressed, depression quiz, mental health screening" />
   <link rel="canonical" href="https://doihavedepression.org/" />
 
-  <!-- ═══ FAVICONS ═══ -->
+  <!-- FAVICONS -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -18,20 +18,20 @@
   <link rel="manifest" href="/site.webmanifest" />
   <meta name="theme-color" content="#2c5f8a" />
 
-  <!-- ═══ OPEN GRAPH ═══ -->
+  <!-- OPEN GRAPH -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://doihavedepression.org/" />
-  <meta property="og:title" content="Do I Have Depression? Free PHQ-9 Screening Tool" />
-  <meta property="og:description" content="Answer 9 honest questions, get a clinically validated depression score with clear guidance and real support links. Takes 2 minutes. Nothing is stored." />
+  <meta property="og:title" content="Do I Have Depression? Free PHQ-9 Test (2 min)" />
+  <meta property="og:description" content="9 questions, clinically validated, no login. Get your PHQ-9 score and actual guidance on what to do next. Nothing stored, nothing shared." />
   <meta property="og:image" content="https://doihavedepression.org/og-image.png" />
 
-  <!-- ═══ TWITTER CARD ═══ -->
+  <!-- TWITTER CARD -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Do I Have Depression? Free PHQ-9 Screening Tool" />
-  <meta name="twitter:description" content="Answer 9 honest questions, get a clinically validated depression score with clear guidance. Takes 2 minutes. Nothing stored." />
+  <meta name="twitter:title" content="Do I Have Depression? Free PHQ-9 Test (2 min)" />
+  <meta name="twitter:description" content="9 questions, clinically validated, no login. Get your PHQ-9 score and actual guidance. Nothing stored." />
   <meta name="twitter:image" content="https://doihavedepression.org/og-image.png" />
 
-  <!-- ═══ STRUCTURED DATA ═══ -->
+  <!-- STRUCTURED DATA: WebApplication -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -41,16 +41,20 @@
     "description": "A free, clinically validated depression screening tool based on the PHQ-9. Answer 9 questions and get a clear explanation of your score, plus links to professional support.",
     "applicationCategory": "HealthApplication",
     "operatingSystem": "Web",
+    "browserRequirements": "Requires JavaScript",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "author": { "@type": "Organization", "name": "doihavedepression.org" },
+    "author": { "@type": "Organization", "name": "doihavedepression.org", "url": "https://doihavedepression.org" },
     "about": {
       "@type": "MedicalCondition",
       "name": "Depression",
-      "alternateName": "Major Depressive Disorder"
-    }
+      "alternateName": ["Major Depressive Disorder", "MDD", "Clinical Depression"]
+    },
+    "inLanguage": "en",
+    "isAccessibleForFree": true
   }
   </script>
 
+  <!-- STRUCTURED DATA: FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -95,11 +99,20 @@
           "@type": "Answer",
           "text": "Please speak with a GP or mental health professional as soon as you can. Effective treatments exist for depression, and most people improve significantly with the right support. The tool provides links to crisis lines and therapist directories if you need somewhere to start."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does the PHQ-9 screening take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "About two minutes. There are 9 questions, each with four response options. Most people complete it in under two minutes."
+        }
       }
     ]
   }
   </script>
 
+  <!-- STRUCTURED DATA: Speakable -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -108,10 +121,10 @@
   }
   </script>
 
-  <!-- ═══ ADSENSE ═══ -->
+  <!-- ADSENSE -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5571545548884056" crossorigin="anonymous"></script>
 
-  <!-- ═══ FONTS ═══ -->
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,600;1,9..144,700&family=Karla:wght@300;400;500&display=swap" rel="stylesheet" />
@@ -122,9 +135,9 @@
 
   <div class="site-wrapper">
 
-    <!-- Crisis bar — always visible -->
+    <!-- Crisis bar: always visible -->
     <div class="crisis-bar" id="crisisAlways">
-      <span class="crisis-bar-label">If you are in crisis right now:</span>
+      <span class="crisis-bar-label">If you're in crisis right now:</span>
       <div class="crisis-bar-links">
         <a href="tel:9152987821">iCall India: 9152987821</a>
         <a href="tel:116123">Samaritans UK: 116 123</a>
@@ -155,17 +168,17 @@
         <div class="hero-eyebrow">free screening tool</div>
         <h1 class="hero-title">Do I have<br><em>depression?</em></h1>
         <p class="hero-sub">
-          This uses the <strong>PHQ-9</strong>, the same nine-question screening your GP uses. It takes two minutes. Your answers are not stored or shared with anyone.
+          This uses the <strong>PHQ-9</strong>, the same nine-question screening your GP uses. Two minutes. Your answers never leave your browser.
         </p>
       </section>
 
       <!-- INTRO -->
       <div class="intro-block">
         <p>
-          Asking this question takes honesty. If something has felt off, a persistent flatness, a heaviness that won't shift, a sense that things you used to enjoy don't reach you the way they did, that matters and it is worth looking at.
+          Asking this question takes honesty. If something has felt off lately, a persistent flatness, a heaviness that won't shift, things you used to enjoy not landing the way they did, that's worth looking at.
         </p>
         <p>
-          This screening does not diagnose depression. Only a qualified professional can do that. What it can do is help you understand whether what you are experiencing lines up with recognised symptoms, and give you a clearer picture to bring into a conversation with a doctor or therapist.
+          This screening doesn't diagnose depression. Only a qualified professional can do that. What it can do is help you understand whether what you're experiencing lines up with recognised symptoms, and give you something clearer to bring into a conversation with a doctor or therapist.
         </p>
         <p>
           Answer honestly. There are no right or wrong answers here.
@@ -247,7 +260,7 @@
       <!-- CRISIS SECTION -->
       <section class="crisis-section hidden" id="crisisSection" aria-label="Crisis support contacts">
         <h2 class="section-header">If you need to talk to someone now</h2>
-        <p class="section-sub">These lines are free, confidential, and available around the clock. You do not need to be in immediate danger to call.</p>
+        <p class="section-sub">These lines are free, confidential, and available around the clock. You don't need to be in immediate danger to call.</p>
         <div class="crisis-grid" id="crisisGrid"></div>
       </section>
 
@@ -270,12 +283,12 @@
         <div class="info-card">
           <div class="info-card-label">what to know</div>
           <div class="info-card-title">Depression is common</div>
-          <div class="info-card-body">Around 1 in 6 people will experience depression at some point. It is one of the most treatable mental health conditions there is.</div>
+          <div class="info-card-body">Around 1 in 6 people will experience depression at some point. It's one of the most treatable mental health conditions there is.</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">what to know</div>
-          <div class="info-card-title">It is not a character flaw</div>
-          <div class="info-card-body">Depression is not weakness or self-pity. It involves real changes in brain chemistry, and it responds to real treatment.</div>
+          <div class="info-card-title">It's not a character flaw</div>
+          <div class="info-card-body">Depression isn't weakness or self-pity. It involves real changes in brain chemistry, and it responds to real treatment.</div>
         </div>
         <div class="info-card">
           <div class="info-card-label">what to know</div>
@@ -290,7 +303,7 @@
         <div class="faq-list">
           <div class="faq-item">
             <p class="faq-q">What is the PHQ-9?</p>
-            <p class="faq-a">The PHQ-9 (Patient Health Questionnaire-9) is a nine-item self-report tool for detecting and measuring depression severity. Developed in 2001, it has been validated across dozens of languages and clinical populations and is used routinely in GP surgeries, hospitals, and mental health services worldwide.</p>
+            <p class="faq-a">The PHQ-9 (Patient Health Questionnaire-9) is a nine-item self-report tool for detecting and measuring depression severity. Developed in 2001, it's been validated across dozens of languages and clinical populations and is used routinely in GP surgeries, hospitals, and mental health services worldwide.</p>
           </div>
           <div class="faq-item">
             <p class="faq-q">Does a high score mean I definitely have depression?</p>
@@ -304,6 +317,10 @@
             <p class="faq-q">Are my answers stored or shared?</p>
             <p class="faq-a">No. Your answers are never transmitted to a server or stored anywhere. The entire calculation happens in your browser. Nothing you enter here is visible to anyone else.</p>
           </div>
+          <div class="faq-item">
+            <p class="faq-q">How long does the test take?</p>
+            <p class="faq-a">About two minutes. Nine questions, four options each. Most people are done before they've finished their coffee.</p>
+          </div>
         </div>
       </section>
 
@@ -312,16 +329,16 @@
         <h2 class="about-title">About this tool</h2>
         <div class="about-body">
           <p>
-            The <strong>PHQ-9</strong> (Patient Health Questionnaire-9) is a nine-item self-report tool for detecting and measuring depression severity. Developed in 2001, it has been validated across dozens of languages and clinical populations. It is used routinely in GP surgeries, hospitals, and mental health settings worldwide.
+            The <strong>PHQ-9</strong> (Patient Health Questionnaire-9) is a nine-item self-report tool for detecting and measuring depression severity. Developed in 2001, it's been validated across dozens of languages and clinical populations. It's used routinely in GP surgeries, hospitals, and mental health settings worldwide.
           </p>
           <p>
-            Scores are grouped into five bands: minimal (0-4), mild (5-9), moderate (10-14), moderately severe (15-19), and severe (20-27). These thresholds are drawn directly from the original validation study. A score of 10 or above is commonly used as a clinical cutoff warranting further assessment.
+            Scores are grouped into five bands: minimal (0-4), mild (5-9), moderate (10-14), moderately severe (15-19), and severe (20-27). These thresholds come directly from the original validation study. A score of 10 or above is commonly used as the clinical cutoff warranting further assessment.
           </p>
           <p>
-            This site does not store your answers. Nothing is transmitted to a server. The calculation happens entirely in your browser.
+            This site doesn't store your answers. Nothing is transmitted to a server. The calculation happens entirely in your browser.
           </p>
           <p>
-            <strong>This tool is not a diagnosis.</strong> Depression is a clinical diagnosis made by a qualified healthcare professional. A high score here does not mean you definitely have depression. A low score does not mean you definitely do not. If you are concerned, please speak with your GP or a mental health professional.
+            <strong>This tool is not a diagnosis.</strong> Depression is a clinical diagnosis made by a qualified healthcare professional. A high score here doesn't mean you definitely have depression. A low score doesn't mean you definitely don't. If you're concerned, please speak with your GP or a mental health professional.
           </p>
         </div>
       </section>
@@ -344,7 +361,7 @@
 
     <footer class="site-footer">
       <p class="footer-disclaimer">
-        This website is an informational tool and is not a substitute for professional medical advice, diagnosis, or treatment. The PHQ-9 is a validated screening instrument, not a diagnostic test. If you are concerned about your mental health, please consult a qualified healthcare professional. If you are in immediate danger, please contact emergency services or a crisis line.
+        This website is an informational tool and is not a substitute for professional medical advice, diagnosis, or treatment. The PHQ-9 is a validated screening instrument, not a diagnostic test. If you're concerned about your mental health, please consult a qualified healthcare professional. If you're in immediate danger, please contact emergency services or a crisis line.
       </p>
       <p class="footer-copy">
         &copy; <span id="footerYear"></span> doihavedepression.org. PHQ-9 &copy; Pfizer Inc., used with permission for non-commercial use.
