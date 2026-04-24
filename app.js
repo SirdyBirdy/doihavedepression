@@ -1,21 +1,22 @@
-// ─────────────────────────────────────────
-//  APP — doihavedepression.com
-// ─────────────────────────────────────────
+// -----------------------------------------
+//  APP -- doihavedepression.com
+// -----------------------------------------
 
 (function () {
   "use strict";
 
-  // ── State ──────────────────────────────
+  // -- State
   const answers = new Array(9).fill(null);
   let resultShown = false;
+  let currentScore = 0;
+  let currentResult = null;
 
-  // ── DOM refs ───────────────────────────
+  // -- DOM refs
   const questionList      = document.getElementById("questionList");
   const progressFill      = document.getElementById("progressFill");
   const progressLabel     = document.getElementById("progressLabel");
   const submitBtn         = document.getElementById("submitBtn");
   const resultCard        = document.getElementById("resultCard");
-  const resultZone        = document.getElementById("resultZone");
   const resultTitle       = document.getElementById("resultTitle");
   const resultScore       = document.getElementById("resultScore");
   const resultDesc        = document.getElementById("resultDesc");
@@ -26,21 +27,20 @@
   const therapistGrid     = document.getElementById("therapistGrid");
   const selfHelpSection   = document.getElementById("selfHelpSection");
   const selfHelpList      = document.getElementById("selfHelpList");
-  const crisisAlways      = document.getElementById("crisisAlways");
   const footerYear        = document.getElementById("footerYear");
-  const q9Warning         = document.getElementById("q9Warning");
   const toast             = document.getElementById("toast");
   const shareSection      = document.getElementById("shareSection");
   const shareTextBox      = document.getElementById("shareTextBox");
+  const adMid             = document.getElementById("adMid");
 
-  // ── Init ───────────────────────────────
+  // -- Init
   function init() {
     footerYear.textContent = new Date().getFullYear();
     renderQuestions();
     bindEvents();
   }
 
-  // ── Render questions ───────────────────
+  // -- Render questions
   function renderQuestions() {
     PHQ9.forEach((text, i) => {
       const block = document.createElement("div");
@@ -86,7 +86,7 @@
     });
   }
 
-  // ── Select an answer ───────────────────
+  // -- Select an answer
   function selectAnswer(qIndex, value, clickedBtn, group) {
     answers[qIndex] = value;
 
@@ -94,35 +94,37 @@
     clickedBtn.classList.add("selected");
 
     // Q9 check
-    if (qIndex === 8 && value > 0) {
+    if (qIndex === 8) {
       const note = document.getElementById("q9Warning");
-      if (note) note.style.display = "block";
-    } else if (qIndex === 8 && value === 0) {
-      const note = document.getElementById("q9Warning");
-      if (note) note.style.display = "none";
+      if (note) note.style.display = value > 0 ? "block" : "none";
     }
 
     updateProgress();
     if (resultShown) recalculate();
   }
 
-  // ── Progress ───────────────────────────
+  // -- Progress
   function updateProgress() {
     const answered = answers.filter(a => a !== null).length;
     const pct = Math.round((answered / 9) * 100);
     progressFill.style.width = pct + "%";
+    progressFill.setAttribute("aria-valuenow", pct);
     progressLabel.textContent = answered + " of 9 answered";
 
     if (answered === 9) {
       submitBtn.removeAttribute("disabled");
+      submitBtn.removeAttribute("aria-disabled");
       submitBtn.classList.add("ready");
+      submitBtn.textContent = "see my result";
     } else {
       submitBtn.setAttribute("disabled", "");
+      submitBtn.setAttribute("aria-disabled", "true");
       submitBtn.classList.remove("ready");
+      submitBtn.textContent = "answer all 9 questions to see your result";
     }
   }
 
-  // ── Calculate score ────────────────────
+  // -- Calculate score
   function getScore() {
     return answers.reduce((sum, a) => sum + (a || 0), 0);
   }
@@ -131,21 +133,21 @@
     return PHQ9_RESULTS.find(r => score >= r.min && score <= r.max) || PHQ9_RESULTS[PHQ9_RESULTS.length - 1];
   }
 
-  // ── Run / recalculate ──────────────────
+  // -- Run / recalculate
   function runResult(scroll) {
     resultShown = true;
-    const score = getScore();
-    const result = getResult(score);
+    currentScore = getScore();
+    currentResult = getResult(currentScore);
 
-    resultCard.className = "result-card " + result.zone;
+    resultCard.className = "result-card " + currentResult.zone;
     resultCard.classList.remove("hidden");
-    resultTitle.textContent = result.title;
-    resultScore.textContent = "PHQ-9 score: " + score + " / 27";
-    resultDesc.textContent = result.desc;
-    resultGuidance.textContent = result.guidance;
+    resultTitle.textContent = currentResult.title;
+    resultScore.textContent = "PHQ-9 score: " + currentScore + " / 27";
+    resultDesc.textContent = currentResult.desc;
+    resultGuidance.textContent = currentResult.guidance;
 
     // Crisis section
-    if (result.showCrisis || answers[8] > 0) {
+    if (currentResult.showCrisis || answers[8] > 0) {
       crisisSection.classList.remove("hidden");
       if (crisisGrid.childElementCount === 0) renderCrisisLines();
     } else {
@@ -153,7 +155,7 @@
     }
 
     // Therapist directories
-    if (result.showResources) {
+    if (currentResult.showResources) {
       therapistSection.classList.remove("hidden");
       if (therapistGrid.childElementCount === 0) renderTherapists();
       selfHelpSection.classList.remove("hidden");
@@ -163,8 +165,11 @@
       selfHelpSection.classList.add("hidden");
     }
 
-    // Share
-    const shareMsg = buildShareText(score, result);
+    // Show mid ad
+    if (adMid) adMid.classList.remove("hidden");
+
+    // Share / save
+    const shareMsg = buildShareText(currentScore, currentResult);
     shareTextBox.textContent = shareMsg;
     window._shareMsg = shareMsg;
     shareSection.classList.remove("hidden");
@@ -178,7 +183,7 @@
     runResult(false);
   }
 
-  // ── Render helpers ─────────────────────
+  // -- Render helpers
   function renderCrisisLines() {
     CRISIS_LINES.forEach(line => {
       const card = document.createElement("div");
@@ -218,47 +223,91 @@
     });
   }
 
-  // ── Share ──────────────────────────────
+  // -- Share / save text
   function buildShareText(score, result) {
-    return `I just completed the PHQ-9 depression screening on doihavedepression.com.\n\nScore: ${score}/27 — ${result.title}\n\nIf you have been feeling low, it takes two minutes. Check yours.\n\ndoihavedepression.com`;
+    return `I just took the PHQ-9 depression screening on doihavedepression.org.\n\nScore: ${score}/27 -- ${result.title}\n\nIf you've been feeling low, it takes two minutes. Check yours:\n\ndoihavedepression.org`;
   }
 
+  function buildSaveText(score, result) {
+    const date = new Date().toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+    const lines = [
+      "PHQ-9 Depression Screening Result",
+      "doihavedepression.org",
+      "================================",
+      "",
+      `Date: ${date}`,
+      `Score: ${score} / 27`,
+      `Category: ${result.title}`,
+      "",
+      "Summary:",
+      result.desc,
+      "",
+      "Guidance:",
+      result.guidance,
+      "",
+      "================================",
+      "This is a screening result, not a clinical diagnosis.",
+      "If you are concerned, please speak with a healthcare professional.",
+    ];
+    return lines.join("\n");
+  }
+
+  // -- Share actions
   function shareTwitter() {
-    const text = encodeURIComponent(window._shareMsg || "doihavedepression.com");
+    const text = encodeURIComponent(window._shareMsg || "doihavedepression.org");
     window.open("https://twitter.com/intent/tweet?text=" + text, "_blank");
   }
 
   function shareWhatsapp() {
-    const text = encodeURIComponent(window._shareMsg || "doihavedepression.com");
+    const text = encodeURIComponent(window._shareMsg || "doihavedepression.org");
     window.open("https://wa.me/?text=" + text, "_blank");
   }
 
   function copyText() {
-    const txt = window._shareMsg || "doihavedepression.com";
+    const txt = window._shareMsg || "doihavedepression.org";
     navigator.clipboard.writeText(txt).then(() => {
       showToast("Copied to clipboard.");
       const btn = document.getElementById("btnCopy");
-      btn.textContent = "copied";
-      setTimeout(() => btn.textContent = "copy text", 2000);
-    }).catch(() => showToast("Could not copy. Try selecting it manually."));
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> copied`;
+      setTimeout(() => { btn.innerHTML = originalHTML; }, 2200);
+    }).catch(() => {
+      showToast("Could not copy. Try selecting the text manually.");
+    });
   }
 
-  // ── Toast ──────────────────────────────
+  function saveTxt() {
+    if (!currentResult) return;
+    const content = buildSaveText(currentScore, currentResult);
+    const blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "phq9-result-doihavedepression.txt";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast("Saved as text file.");
+  }
+
+  // -- Toast
   function showToast(msg) {
     toast.textContent = msg;
     toast.classList.add("show");
     setTimeout(() => toast.classList.remove("show"), 2800);
   }
 
-  // ── Bind ───────────────────────────────
+  // -- Bind
   function bindEvents() {
     submitBtn.addEventListener("click", () => runResult(true));
     document.getElementById("btnTwitter").addEventListener("click", shareTwitter);
     document.getElementById("btnWhatsapp").addEventListener("click", shareWhatsapp);
     document.getElementById("btnCopy").addEventListener("click", copyText);
+    document.getElementById("btnSaveTxt").addEventListener("click", saveTxt);
   }
 
-  // ── Boot ───────────────────────────────
+  // -- Boot
   document.addEventListener("DOMContentLoaded", init);
 
 })();
