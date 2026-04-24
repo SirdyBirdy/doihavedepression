@@ -1,6 +1,6 @@
-// ─────────────────────────────────────────
-//  DATA — doihavedepression.com
-// ─────────────────────────────────────────
+// -----------------------------------------
+//  DATA -- doihavedepression.com
+// -----------------------------------------
 
 // PHQ-9 questions (Patient Health Questionnaire)
 // Kroenke K, Spitzer RL, Williams JB. The PHQ-9. J Gen Intern Med. 2001;16(9):606-613.
@@ -10,9 +10,9 @@ const PHQ9 = [
   "Trouble falling or staying asleep, or sleeping too much",
   "Feeling tired or having little energy",
   "Poor appetite or overeating",
-  "Feeling bad about yourself — or that you are a failure or have let yourself or your family down",
+  "Feeling bad about yourself, or that you are a failure or have let yourself or your family down",
   "Trouble concentrating on things, such as reading the newspaper or watching television",
-  "Moving or speaking so slowly that other people could have noticed — or the opposite, being so fidgety or restless that you have moved around a lot more than usual",
+  "Moving or speaking so slowly that other people could have noticed, or the opposite: being so fidgety or restless that you have moved around a lot more than usual",
   "Thoughts that you would be better off dead, or of hurting yourself in some way",
 ];
 
@@ -30,8 +30,8 @@ const PHQ9_RESULTS = [
     max: 4,
     zone: "zone-minimal",
     title: "Minimal or no depression",
-    desc: "Your score suggests you are not experiencing significant depressive symptoms right now. That said, if something brought you here today, trust that instinct. How we feel can shift, and it is always okay to talk to someone.",
-    guidance: "No action required based on score alone. If you have been feeling off in ways this questionnaire did not quite capture, a conversation with your GP is always a reasonable step.",
+    desc: "Your score suggests you're not experiencing significant depressive symptoms right now. That said, if something brought you here today, trust that instinct. How we feel can shift, and it's always okay to talk to someone.",
+    guidance: "No action required based on score alone. If you've been feeling off in ways this questionnaire didn't quite capture, a conversation with your GP is always a reasonable step.",
     showResources: false,
     showCrisis: false,
   },
@@ -40,7 +40,7 @@ const PHQ9_RESULTS = [
     max: 9,
     zone: "zone-mild",
     title: "Mild depression",
-    desc: "Your score suggests you may be experiencing mild depressive symptoms. This level of distress is real and worth paying attention to. Many people notice these feelings come and go, but that does not make them less important.",
+    desc: "Your score suggests you may be experiencing mild depressive symptoms. This level of distress is real and worth paying attention to. Many people notice these feelings come and go, but that doesn't make them less important.",
     guidance: "Consider speaking with your GP or a counsellor, especially if these feelings have been present for more than two weeks. Self-care strategies like regular sleep, movement, and social connection can help, but professional support is often more effective.",
     showResources: true,
     showCrisis: false,
@@ -50,8 +50,8 @@ const PHQ9_RESULTS = [
     max: 14,
     zone: "zone-moderate",
     title: "Moderate depression",
-    desc: "Your score is in the moderate range. This level of depression can make daily life feel significantly harder, and it often does not lift on its own without some form of support.",
-    guidance: "We would encourage you to speak with a GP or mental health professional soon. Effective treatments exist, and many people find significant relief with therapy, medication, or both. You do not have to manage this alone.",
+    desc: "Your score is in the moderate range. This level of depression can make daily life feel significantly harder, and it often doesn't lift on its own without some form of support.",
+    guidance: "We'd encourage you to speak with a GP or mental health professional soon. Effective treatments exist, and many people find significant relief with therapy, medication, or both. You don't have to manage this alone.",
     showResources: true,
     showCrisis: false,
   },
@@ -61,7 +61,7 @@ const PHQ9_RESULTS = [
     zone: "zone-moderately-severe",
     title: "Moderately severe depression",
     desc: "Your score suggests moderately severe depression. Symptoms at this level typically have a significant impact on how you function day to day, in relationships, at work, and in how you feel about yourself.",
-    guidance: "Please reach out to a GP or mental health professional as soon as you can. This level of depression responds well to treatment, but waiting usually makes things harder. If you are not sure where to start, the resources below can help.",
+    guidance: "Please reach out to a GP or mental health professional as soon as you can. This level of depression responds well to treatment, but waiting usually makes things harder. If you're not sure where to start, the resources below can help.",
     showResources: true,
     showCrisis: true,
   },
@@ -70,7 +70,7 @@ const PHQ9_RESULTS = [
     max: 27,
     zone: "zone-severe",
     title: "Severe depression",
-    desc: "Your score indicates severe depression. If this is where you are right now, we want you to know that reaching this level does not mean something is permanently wrong with you. It means you need and deserve real support, soon.",
+    desc: "Your score indicates severe depression. If this is where you are right now, we want you to know that reaching this level doesn't mean something is permanently wrong with you. It means you need and deserve real support, soon.",
     guidance: "Please contact a GP, mental health professional, or crisis line today. Severe depression is a medical condition that responds to treatment. The crisis contacts below are available right now, at any hour, if you need to talk to someone immediately.",
     showResources: true,
     showCrisis: true,
